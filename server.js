@@ -1,10 +1,12 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const userRoute = require("./User");
-const PORT = 5000;
-
-mongoose.connect('mongodb+srv://zubairahmad:Ulqqt5ky6kOhBJR8@cluster0.hdtsgmg.mongodb.net/').then(()=>{
+// const PORT = 5000;
+const PORT = process.env.PORT;
+const database= process.env.MONGODB_URI;
+mongoose.connect(database).then(()=>{
 console.log("Connected to MongoDB ");
 }).catch(err=>{
     console.error("error connection to database",err);
